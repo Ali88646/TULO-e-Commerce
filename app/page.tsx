@@ -1,10 +1,13 @@
+import Container from "@/components/Container";
+import HomeBanner from "@/components/HomeBanner";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <div>
-      <h2>TULOS E Commerce</h2>
-      <Button variant={"outline"}>Demo button</Button>
+      <Container className="py-10">
+        <HomeBanner />
+      </Container>
     </div>
   );
 }
