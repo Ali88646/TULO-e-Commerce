@@ -5,6 +5,8 @@ import { X } from "lucide-react";
 import { headerData } from "@/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import SocialMedia from "./SocialMedia";
+import { useOutSideClick } from "@/hooks/useOutsideclick";
 
 //props
 interface SidebarProps {
@@ -14,9 +16,11 @@ interface SidebarProps {
 
 const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const pathname = usePathname();
+  const sideBarRef = useOutSideClick<HTMLDivElement>(onClose);
+
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 bg-darkColor/50 shadow-xl hoverEffect w-full  ${
+      className={`fixed inset-y-0 left-0 z-50 bg-darkColor/50 shadow-xl hoverEffect cursor-auto w-full  ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -24,6 +28,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.3 }}
+        ref={sideBarRef}
         className="min-w-72 max-w-96 bg-darkColor text-white/70 h-full p-10 border-r border-r-white flex flex-col gap-6"
       >
         <div className="w-ful flex justify-between items-center">
@@ -41,7 +46,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 key={item?.title}
                 href={item?.href}
                 onClick={onClose}
-                className={`hover:text-white hover:font-bold hoverEffect relative group ${
+                className={`hover:text-white hover:font-bold hoverEffect relative group  w-1/3 ${
                   pathname === item.href && "text-white font-bold"
                 }`}
               >
@@ -50,6 +55,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             );
           })}
         </div>
+        <SocialMedia />
       </motion.div>
     </div>
   );
