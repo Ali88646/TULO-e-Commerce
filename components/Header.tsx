@@ -11,7 +11,6 @@ import Link from "next/link";
 
 const Header = async () => {
   const user = await currentUser();
-  // console.log(user);
 
   return (
     <header className=" border-b border-b-gray-400 py-5">
