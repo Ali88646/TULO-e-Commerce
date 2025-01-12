@@ -29,4 +29,11 @@ export const categoryType = defineType({
       options: { hotspot: true },
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "description",
+      media: "image",
+    },
+  },
 });
